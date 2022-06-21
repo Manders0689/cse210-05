@@ -1,3 +1,5 @@
+from action import Action
+
 class ControlActorsAction(Action):
     """
     An input action that controls the cycles.

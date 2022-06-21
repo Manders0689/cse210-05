@@ -1,3 +1,5 @@
+from action import Action
+
 class DrawActorsAction(Action):
     """
     An output action that draws all the actors.
