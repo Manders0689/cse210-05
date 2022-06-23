@@ -1,9 +1,9 @@
 import constants
 
 from game.casting.cast import Cast
-from game.casting.score import Score
-from game.casting.snake import Cycle1
-from game.casting.snake import Cycle2
+from game.casting.banner import Banner
+from game.casting.cycle1 import Cycle1
+from game.casting.cycle2 import Cycle2
 
 # import banner?
 # from game.casting.snake import banner
@@ -29,7 +29,7 @@ def main():
     cast = Cast()
     cast.add_actor("cycle1", Cycle1())
     cast.add_actor("cycle2", Cycle2())
-    cast.add_actor("scores", Score())
+    cast.add_actor("scores", Banner())
    
     # start the game
     keyboard_service = KeyboardService()
