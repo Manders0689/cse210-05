@@ -45,16 +45,18 @@ class HandleCollisionsAction(Action):
         cycle2_tail = cycle2.get_segments()[1:]
 
         # if cycle 2 hits cycle 1's tail, then cycle 1 wins
-        for segment in cycle1_tail:
-            if cycle2.get_position().equals(segment.get_position()):
-                self._is_game_over = True
-                self._winner = "Cycle 1"
+        for segment1 in cycle1_tail:
+            for segment2 in cycle2_tail:
+                if segment2.get_position().equals(segment1.get_position()):
+                    self._is_game_over = True
+                    self._winner = "Cycle 1"
 
         # if cycle 1 hits cycle 2's tail, then cycle 2 wins
-        for segment in cycle2_tail:
-            if cycle1.get_position().equals(segment.get_position()):
-                self._is_game_over = True
-                self._winner = "Cycle 2"        
+        for segment2 in cycle2_tail:
+            for segment1 in cycle1_tail:
+                if segment1.get_position().equals(segment2.get_position()):
+                    self._is_game_over = True
+                    self._winner = "Cycle 2"        
 
     
     def _handle_cycle_collision(self, cast):
@@ -64,16 +66,12 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-
-
         cycle1 = cast.get_first_actor("cycle1")
         cycle2 = cast.get_first_actor("cycle2")
+        head1 = cycle1.get_head()
+        head2 = cycle2.get_head()
 
-        cycle1_cycle = cycle1.get_segments()[0]
-        cycle2_cycle = cycle2.get_segments()[0]
-
-        # if the cycles hit each other, then neither player wins
-        if cycle1_cycle.get_position().equals(cycle2_cycle.get_position()):
+        if head1.get_position().equals(head2.get_position()):
             self._is_game_over = True
             self._winner = "No one"
 
@@ -106,7 +104,6 @@ class HandleCollisionsAction(Action):
                 message.set_text(f"Game Over! {self._winner} won!")
                 message.set_position(position)
                 cast.add_actor("messages", message)
-
 
             for segment in cycle1_tail:
                 segment.set_color(constants.WHITE)
