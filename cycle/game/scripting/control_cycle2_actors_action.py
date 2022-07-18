@@ -44,9 +44,6 @@ class ControlCycle2ActorsAction(Action):
         # down
         if self._keyboard_service.is_key_down('k'):
             self._direction = Point(0, constants.CELL_SIZE)
-        
-        #snake = cast.get_first_actor("snakes")
-        #snake.turn_head(self._direction)
 
         cycle2 = cast.get_first_actor('cycle2')
         cycle2.turn_head(self._direction)

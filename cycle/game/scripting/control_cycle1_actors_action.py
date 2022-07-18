@@ -47,3 +47,4 @@ class ControlCycle1ActorsAction(Action):
         
         cycle1 = cast.get_first_actor('cycle1')
         cycle1.turn_head(self._direction)
+        #cycle1.grow_tail(1)
